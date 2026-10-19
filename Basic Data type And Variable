@@ -1,0 +1,18 @@
+public class Main {
+	public static void main(String[] args) {
+		
+		String Name = "Christian Gaveriel B. Pascual";
+		int age = 20;
+		double height = 1.73;
+		char initial = 'B';
+		boolean isEnrolled = true;
+		
+		System.out.println("My full name is " + Name);
+	
+		System.out.println("I am " + height + "m in height.");
+		
+		System.out.println("My middle Initial is " +initial);
+		
+		System.out.println("And I am currently enrolled!" + isEnrolled);
+	}
+}
