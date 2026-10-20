@@ -1,0 +1,17 @@
+public class Main {
+    public static void main(String[] args) {
+        int a = 17;
+        int b = 5;
+
+        System.out.println("Addition: " + (a + b));
+        System.out.println("Subtraction: " + (a - b));
+        System.out.println("Multiplication: " + (a * b));
+        System.out.println("Division: " + (a / b));
+        System.out.println("Modulus: " + (a % b));
+
+       /* Note on negative numbers:
+		 Division (/) truncates toward zero (-17 / 5 = -3)
+		  Modulo (%) takes the sign of the left operand (-17 % 5 = -2)*/
+
+    }
+}
