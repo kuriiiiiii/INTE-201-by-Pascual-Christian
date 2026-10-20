@@ -1,0 +1,15 @@
+public class Main {
+    public static void main(String[] args) {
+        double average = 78.5;
+        int absences = 2;
+
+        boolean passes = (average >= 75 && absences <= 3) || (average >= 90);
+
+        if (passes) {
+            System.out.println("PASS: average " + average + " with " + absences
+                    + " absences meets the requirements of average being greater than or equal 75 and has less than or equal 3 absences.");
+        } else {
+            System.out.println("FAIL: average " + average + " with " + absences
+                    + "Because the average doesn't' meet the requirement which is 75 and has more  than or  3 absent.");
+        }
+    }
