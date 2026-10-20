@@ -1,0 +1,20 @@
+public class Main {
+	public static void main(String[] args) {
+		int quantity = 3;
+		double up = 11.99;
+		String name = "Sari-Sari Store ni Bebang";
+		double total;
+		String item = "IceCream";
+		
+		System.out.println(name);
+		
+		System.out.println(("ITEM:")+item + (" ") + quantity +("pcs."));
+		
+		System.out.println(("UNITPRICE:")+("¥") + up);
+		
+		total = up * quantity;
+	
+			System.out.println(("TOTAL:")+("¥")+ total);
+	}
+}
+/*The total is not int because we are talking about money. prices vary and sometimes it contain decimals like ive shown in my example connecting it to a real world shopping */
