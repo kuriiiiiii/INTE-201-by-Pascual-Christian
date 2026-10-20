@@ -1,0 +1,32 @@
+public class Main {
+    public static void main(String[] args) {
+   
+        byte num = 127;
+        num++;
+        System.out.println("byte after increment: " + num);
+        String s1 = new String("Java");
+        String s2 = new String("Java");
+        String s3 = "Java";
+
+        
+        /*s1 == s2 is false.each new String("...") creates its own object
+         in memory, so s1 and s2 point to different objects.*/
+        System.out.println("s1 == s2: " + (s1 == s2));
+        System.out.println("s1.equals(s2): " + s1.equals(s2));
+
+        /* s1 == s3 is false.s1 is a separate object created with new,
+         while s3 points to the literal "Java" stored in the string pool.*/
+        System.out.println("s1 == s3: " + (s1 == s3));
+        System.out.println("s1.equals(s3): " + s1.equals(s3));
+
+        /* s2 == s3 is false same reason as s1 == s3. s2 is its own
+         object, and s3 points to the pooled literal.*/
+        System.out.println("s2 == s3: " + (s2 == s3));
+        System.out.println("s2.equals(s3): " + s2.equals(s3));
+
+        int[] arr1 = {1, 2, 3};
+        int[] arr2 = arr1;
+        arr2[0] = 99;
+        System.out.println("arr1[0]: " + arr1[0]);
+    }
+}
