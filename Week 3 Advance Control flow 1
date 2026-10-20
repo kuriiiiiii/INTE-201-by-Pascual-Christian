@@ -1,0 +1,20 @@
+public class Main {
+    public static void main(String[] args) {
+        String enteredUsername = "admin";
+        String enteredPassword = "pass123";
+        boolean accountLocked = false;
+
+        if (enteredUsername.equals("admin")) {
+            if (enteredPassword.equals("pass123")) {
+                if (!accountLocked) {
+                    System.out.println("Login successful");
+                } else {
+                    System.out.println("Login failed: account is locked");
+                }
+            } else {
+                System.out.println("Login failed: wrong password");
+            }
+        } else {
+            System.out.println("Login failed: wrong username");
+        }
+    }
