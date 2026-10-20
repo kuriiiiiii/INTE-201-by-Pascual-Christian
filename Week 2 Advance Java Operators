@@ -1,0 +1,21 @@
+public class Main {
+    public static void main(String[] args) {
+        double balance = 1000.0;
+
+        balance += 500;
+        System.out.println("Balance: " + balance);
+        balance *= 1.5;
+        System.out.println("Balance: " + balance);
+        balance += 250;
+        System.out.println("Balance: " + balance);
+
+        int count = 5;
+        System.out.println(count++);
+        System.out.println(count);
+
+        count = 5;
+        System.out.println(++count);
+        System.out.println(count);
+        /*The count++ gives you the value first then proceed to update it. while the ++count update thr value first before showing it.*/
+    }
+}
