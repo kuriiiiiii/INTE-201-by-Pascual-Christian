@@ -1,0 +1,16 @@
+public class Main {
+    public static void main(String[] args) {
+        double cm = 250.5;
+        int meters = (int) (cm / 100);
+        double remainingCm = cm - (meters * 100);
+        System.out.println(meters + " m " + remainingCm + " cm");
+        /*Java convert it automatically since int can fit its value into double thats why no cast is needed.*/
+        int wholeCm = 150;
+        double widened = wholeCm;
+        System.out.println(widened);
+         /*when we cast int into double, int cant handle decimals since its for whole numbers thats why only 9 remains and the .99 is lost.*/
+        double price = 9.99;
+        int narrowed = (int) price;
+        System.out.println(narrowed);
+    }
+}
