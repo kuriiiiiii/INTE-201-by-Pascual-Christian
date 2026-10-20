@@ -1,0 +1,63 @@
+public class Main {
+    public static void main(String[] args) {
+        String username = "bebang";
+        String pin = "1234";
+        double balance = 25000.0;
+        double withdrawal = 4000.0;
+
+        if (username.equals("bebang")) {
+            if (pin.equals("1234")) {
+                String tier;
+                double dailyLimit;
+                double feePercent = 0;
+
+                if (balance < 10000) {
+                    tier = "Bronze";
+                    dailyLimit = 3000;
+                } else if (balance < 50000) {
+                    tier = "Silver";
+                    dailyLimit = 10000;
+                } else if (balance < 100000) {
+                    tier = "Gold";
+                    dailyLimit = 25000;
+                } else {
+                    tier = "Platinum";
+                    dailyLimit = 50000;
+                }
+
+                switch (tier) {
+                    case "Bronze":
+                        feePercent = 2;
+                        break;
+                    case "Silver":
+                        feePercent = 1.5;
+                        break;
+                    case "Gold":
+                        feePercent = 1;
+                        break;
+                    case "Platinum":
+                        feePercent = 0.5;
+                        break;
+                }
+
+                double fee = withdrawal * feePercent / 100;
+
+                if (withdrawal + fee <= balance) {
+                    if (withdrawal <= dailyLimit) {
+                        System.out.println("APPROVED: " + tier + " account, withdrawal "
+                                + withdrawal + " plus fee " + fee);
+                    } else {
+                        System.out.println("DENIED: withdrawal exceeds the " + tier
+                                + " daily limit of " + dailyLimit);
+                    }
+                } else {
+                    System.out.println("DENIED: insufficient balance to cover withdrawal and fee");
+                }
+            } else {
+                System.out.println("DENIED: incorrect PIN");
+            }
+        } else {
+            System.out.println("DENIED: incorrect username");
+        }
+    }
+}
