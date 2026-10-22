@@ -1,0 +1,81 @@
+import java.util.Scanner;
+
+public class Main {
+    static final int LOW = 5;
+
+    static int[] findLowShelf(int[][] warehouse) {
+        int[] location = null;
+        for (int r = 0; r < warehouse.length; r++) {
+            for (int c = 0; c < warehouse[r].length; c++) {
+                if (warehouse[r][c] != -1 && warehouse[r][c] < LOW) {
+                    location = new int[] {r, c};
+                    break; 
+                }
+            }
+            if (location != null) {
+                break; 
+            }
+        }
+        return location;
+    }
+
+    
+    static int restock(Scanner input) {
+        System.out.print("Enter quantity to restock: ");
+        int quantity = input.nextInt();
+        while (quantity <= 0) {
+            System.out.print("Invalid. Enter a positive quantity: ");
+            quantity = input.nextInt();
+        }
+        return quantity;
+    }
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int[][] warehouse = {
+            {20, 15, 8},
+            {-1, 3, 12},
+            {9, 2, -1}
+        };
+        int choice;
+
+        do {
+            System.out.println("1. Total inventory");
+            System.out.println("2. Find first critically low shelf");
+            System.out.println("3. Restock first critically low shelf");
+            System.out.println("4. Exit");
+            System.out.print("Choice: ");
+            choice = input.nextInt();
+
+            if (choice == 1) {
+                int total = 0;
+                for (int r = 0; r < warehouse.length; r++) {
+                    for (int c = 0; c < warehouse[r].length; c++) {
+                        if (warehouse[r][c] == -1) {
+                            continue; // skips damaged shelves
+                        }
+                        total += warehouse[r][c];
+                    }
+                }
+                System.out.println("Total inventory: " + total);
+            } else if (choice == 2) {
+                int[] low = findLowShelf(warehouse);
+                if (low == null) {
+                    System.out.println("No critically low shelf");
+                } else {
+                    System.out.println("First critically low shelf: [" + low[0] + "][" + low[1]
+                            + "] with " + warehouse[low[0]][low[1]] + " items");
+                }
+            } else if (choice == 3) {
+                int[] low = findLowShelf(warehouse);
+                if (low == null) {
+                    System.out.println("No critically low shelf to restock");
+                } else {
+                    warehouse[low[0]][low[1]] += restock(input);
+                    System.out.println("Shelf [" + low[0] + "][" + low[1] + "] now has "
+                            + warehouse[low[0]][low[1]] + " items");
+                }
+            }
+        } while (choice != 4);
+    }
+}
