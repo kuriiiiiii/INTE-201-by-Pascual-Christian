@@ -1,0 +1,96 @@
+import java.util.Scanner;
+
+class Student {
+    String name;
+    int[] quizzes;
+
+    Student(String name, int[] quizzes) {
+        this.name = name;
+        this.quizzes = quizzes;
+    }
+
+    double getAverage() {
+        int sum = 0;
+        for (int i = 0; i < quizzes.length; i++) {
+            sum += quizzes[i];
+        }
+        return (double) sum / quizzes.length;
+    }
+}
+
+public class Main {
+    // Linear search: returns the position of the student with this name, or -1
+    static int findStudent(Student[] students, String name) {
+        for (int i = 0; i < students.length; i++) {
+            if (students[i].name.equalsIgnoreCase(name)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    // Rank = 1 + number of students with a higher average (ties share a rank)
+    static int getRank(Student[] students, int index) {
+        int rank = 1;
+        for (int j = 0; j < students.length; j++) {
+            if (students[j].getAverage() > students[index].getAverage()) {
+                rank++;
+            }
+        }
+        return rank;
+    }
+
+    public static void main(String[] args) {
+        String[] names = {"Uncle Dagz", "BenThingz", "Aljames", "Gusion", "Laufey"};
+        int[][] rawQuizzes = {
+            {69, 65, 67, 67},
+            {60, 62, 58, 64},
+            {65, 69, 66, 68},
+            {55, 50, 62, 57},
+            {64, 66, 63, 62}
+        };
+
+        Student[] students = new Student[names.length];
+        for (int i = 0; i < names.length; i++) {
+            students[i] = new Student(names[i], rawQuizzes[i]);
+        }
+
+            for (int i = 0; i < students.length - 1; i++) {
+            for (int j = 0; j < students.length - 1 - i; j++) {
+                if (students[j].getAverage() < students[j + 1].getAverage()) {
+                    Student temp = students[j];
+                    students[j] = students[j + 1];
+                    students[j + 1] = temp;
+                }
+            }
+        }
+
+        System.out.printf("%-6s%-12s%s%n", "Rank", "Name", "QuizScores (__/69)");
+        for (int i = 0; i < students.length; i++) {
+            System.out.printf("%-6d%-12s%.2f%n",
+                    getRank(students, i),
+                    students[i].name,
+                    students[i].getAverage());
+                    
+                    
+        }
+
+        Scanner input = new Scanner(System.in);
+        System.out.print("Search name (type exit to stop): ");
+        String searchName = input.nextLine();
+
+        while (!searchName.equalsIgnoreCase("exit")) {
+            int index = findStudent(students, searchName);
+            if (index == -1) {
+                System.out.println("Student not found");
+            } else {
+                System.out.printf("Rank: %d | Name: %s | Quiz Score: %.2f/69%n",
+                        getRank(students, index),
+                        students[index].name,
+                        students[index].getAverage());
+            }
+            System.out.print("Search name (type exit to stop): ");
+            searchName = input.nextLine();
+        }
+    }
+}
