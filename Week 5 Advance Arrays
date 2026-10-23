@@ -1,0 +1,29 @@
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        int[] scores = {85, 92, 78, 66, 90, 74, 88, 95};
+        int target = 90;
+        int foundIndex = -1;
+
+        for (int i = 0; i < scores.length; i++) {
+            if (scores[i] == target) {
+                foundIndex = i;
+                break;
+            }
+        }
+
+        if (foundIndex != -1) {
+            System.out.println("Found " + target + " at index " + foundIndex);
+        } else {
+            System.out.println(target + " was not found");
+        }
+
+        int[] sorted = Arrays.copyOf(scores, scores.length);
+        Arrays.sort(sorted);
+        /* Sorting a copy matters because Arrays.sort() rearranges the array in place. Sorting the original would lose its original order, and indexes like the one found above would no longer match the data.*/
+
+        System.out.println("Original: " + Arrays.toString(scores));
+        System.out.println("Sorted: " + Arrays.toString(sorted));
+    }
+}
